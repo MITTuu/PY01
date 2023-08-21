@@ -1,12 +1,12 @@
 #include <iostream>
 #include <cstdio>
 
-class STRING{
-    private: 
-    char* texto; 
+class STRING {
+private:
+    char* texto;
     int largo;
 
-    public:
+public:
     STRING(char*);
     ~STRING();
     int getlargo();

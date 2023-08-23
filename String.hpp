@@ -48,7 +48,7 @@ public:
     int len();
     // método equals()
     STRING** split(char pSeparador);
-    // método concatenar()
+    char* concatenar(char *pCadena)
     void concatenarCadenas(char **pCadenas);
     void reemplazarOcurrencias(const char *pAnterior, const char *pNuevo);
     

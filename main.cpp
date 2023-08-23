@@ -29,27 +29,35 @@ int main() {
 
     std::cout << "Cantidad de catacteres: " << longitud << std::endl;
 
-    return 0;
-
     // implementación del método split()
     char separador = 'e';
 
-    STRING** listaSubcadenas = str1.split(separador);
-
-    // Imprimir las subcadenas usando un bucle while
-    int indice2 = 0;
-    while (listaSubcadenas[indice2] != nullptr) {
-        listaSubcadenas[indice2]->imprimir();
-        indice2++;
+    STRING** subcadenas = str1.split(separador);
+    for (int i = 0; subcadenas[i] != nullptr; ++i) {
+        subcadenas[i]->imprimir();
     }
 
-    // Liberar memoria
-    indice2 = 0;
-    while (listaSubcadenas[indice2] != nullptr) {
-        delete listaSubcadenas[indice2];
-        indice2++;
+    // Liberar la memoria asignada para las subcadenas
+    for (int i = 0; subcadenas[i] != nullptr; ++i) {
+        delete subcadenas[i];
     }
-    delete[] listaSubcadenas;
+    delete[] subcadenas;
+
+    // implementación del método reemplazarOcurrencias()
+    const char* anterior = "One";
+    const char* nuevo = "Two";
+    str1.reemplazarOcurrencias(anterior, nuevo);
+
+    // Imprimir el resultado
+    str1.imprimir();
+
+    // implementación del método concatenarCadenas()
+    char *pCadenas[] = {(char*)" mundo", (char*)"!", nullptr};
+    str1.concatenarCadenas(pCadenas);
+
+    str1.imprimir();
+
+    return 0;
 
 }
 

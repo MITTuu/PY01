@@ -30,7 +30,7 @@
  *****Métodos**************************************
  * 
  **************************************************/
-
+ 
 class STRING {
 private:
     char *apTexto;
@@ -51,5 +51,4 @@ public:
     // método concatenar()
     void concatenarCadenas(char **pCadenas);
     void reemplazarOcurrencias(const char *pAnterior, const char *pNuevo);
-    
 };

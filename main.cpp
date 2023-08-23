@@ -23,12 +23,21 @@ int main() {
     int cantidad = str1.contarCaracter(caracterBuscado);
 
     std::cout << "El caracter '" << caracterBuscado << "' aparece " << cantidad << " veces." << std::endl;
-
+    
+    //Implementación del método ultimoIndice();
+    std::cout <<"\n";
+    str1.ultimoIndice((char*)"e");
+    
+    
     // implementaciÃ³n del mÃ©todo len()
+    std::cout <<"\n";
     int longitud = str1.len();
 
     std::cout << "Cantidad de catacteres: " << longitud << std::endl;
-
+    
+    //Implementación del método equals(char *cadena)
+    str1.equals((char*)"one");
+    
     // implementaciÃ³n del mÃ©todo split()
     char separador = 'e';
 

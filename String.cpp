@@ -107,16 +107,46 @@ int STRING::contarCaracter(char pCaracter) {
 /*****Nombre***************************************
  * ultimoIndice()
  *****Descripción**************************************
- * 
+ * Retorna la última aparición del caracter
+ * de la entrada dentro de la cadena almacenada
+ * en el constructor
  *****Retorno**************************************
- * 
+ * El último índice del caracter. En caso de que
+ * no aparezca, un mensaje indicandolo 
  *****Entradas*************************************
- * 
+ * char *caracter
  **************************************************/
 
 
 //..................................................//
-
+void STRING::ultimoIndice(char *caracter) {
+     //Verificar que solo se ingrese un caracter
+     int iterador = 0;
+     while(caracter[iterador] != '\0'){
+        iterador++;
+     }
+     if (iterador >1){
+        std::cout<<"Error, solo puede ingresar un caracter en la entrada del metodo";
+        return;
+     }
+     char c1 = *caracter;
+     char c2;
+     int posicion = this->aLargo;
+     iterador = 0;
+     while(iterador < this->aLargo){ //Se itera cada caracter de la cadena almacernada en el constructor
+        c2 = this->apTexto[iterador];
+        if (c1 == c2){
+            posicion = iterador;
+        }
+        iterador++;
+     }
+     if(posicion == this->aLargo){ //En caso de que el valor de posicion no cambie, significa que el caracter nunca aparece
+        std::cout<<"El caracter que ingreso nunca aparece en la cadena "<<this->apTexto;
+        return;  
+     }
+     std::cout<<"El caracter "<<c1<<" aparece por ultima vez en la posicion "<<posicion; //posicion si cambi� porque el caracter aparece
+     return;
+}	
 
 /*****Nombre***************************************
  * cambiarCadena()
@@ -167,15 +197,42 @@ int STRING::len() {
 /*****Nombre***************************************
  * equals()
  *****Descripción**************************************
- * 
+ * Compara la cadena de la entrada con la almacenada
+ * en el constructor del objeto
  *****Retorno**************************************
- * 
+ * Un mensaje indicando que son iguales, en caso
+ * de serlo.
+ * Un mensaje indicando que no son iguales, en dicho
+ * caso
  *****Entradas*************************************
- * 
+ * char *cadena
  **************************************************/
-
-
-//..................................................//
+void STRING::equals(char *cadena){
+     int iterador = 0;
+     while (cadena[iterador] != '\0') { //Se verifica primero que la cadena de la entrada tenga la misma longitud de la almacenada en el constructor
+        iterador++;
+     }
+     if(iterador != this->aLargo){
+        std::cout<<"Las cadenas no son iguales";
+        return;
+     }
+     char caracterEntrada;
+     char caracterOriginal;
+     iterador = 0;
+     while (iterador < this->aLargo){ //Se itera para comparar caracter por caracter
+        caracterEntrada = cadena[iterador];
+        caracterOriginal = this->apTexto[iterador]; 
+        if (caracterEntrada != caracterOriginal){ //En caso de que ambos caracteres no sean exactamente iguales
+            std::cout<<"Las cadenas no son iguales";
+            return;
+        }
+        iterador++;
+     }
+     std::cout<<"Ambas cadenas son iguales"; //Caso donde pasa la iteraci�n sin entrar en la condici�n del if
+     return;
+     
+     
+}
 
 
 /*****Nombre***************************************
@@ -220,56 +277,15 @@ STRING** STRING::split(char pSeparador) {
 
 
 /*****Nombre***************************************
- * concatenar
- *****Descripción**********************************
- * Este método va a recibir como parámetro una
- * cadena de caracteres (char*) y la va a concatenar
- * al final del atributo de clase 'apTexto'.
+ * concatenar()
+ *****Descripción**************************************
+ * 
  *****Retorno**************************************
- * char* nuevaCadena
+ * 
  *****Entradas*************************************
- * char *pCaracteres
+ * 
  **************************************************/
 
-char* STRING::concatenar(char *pCaracteres) {
-
-    int largoTotal = (calcularLargo(this->apTexto) + (calcularLargo(pCaracteres)));
-
-    char *pNuevaCadena = new char[largoTotal + 1];
-
-    char *pNuevos = pNuevaCadena;
-
-    
-    while (*this->apTexto != '\0') {
-        *pNuevos = *this->apTexto;
-        ++pNuevos;
-        ++this->apTexto;
-    }
-
-    while (*pCaracteres != '\0') {
-        *pNuevos = *pCaracteres;
-        ++pNuevos;
-        ++pCaracteres;
-    }
-
-    *pNuevos = '\0'; // Agregar el carácter nulo al final
-
-    std::cout << "Nueva cadena: " << pNuevaCadena << std::endl;
-
-    int longitud = calcularLargo(pNuevaCadena);
-
-    delete[] this->apTexto;
-
-    this->apTexto = pNuevaCadena;
-
-    this->aLargo = longitud;
-
-    imprimir();
-
- 
-    return pNuevaCadena;
-
-}
 
 //..................................................//
 

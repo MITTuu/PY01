@@ -11,11 +11,11 @@
  * input: Puntero al arreglo de caracteres de entrada.
  **************************************************/
 
-STRING::STRING(char* input) {
+STRING::STRING(char *pEntrada) {
     int indice = 0;
     
     // Calcular el largo del input
-    while (input[indice] != '\0') {
+    while (pEntrada[indice] != '\0') {
         indice++;
     }
 
@@ -24,7 +24,7 @@ STRING::STRING(char* input) {
 
     // Copiar el contenido de input
     for (int i = 0; i <= indice; ++i) {
-        this->apTexto[i] = input[i];
+        this->apTexto[i] = pEntrada[i];
     }
 
     this->aLargo = indice;
@@ -105,6 +105,51 @@ int STRING::contarCaracter(char pCaracter) {
 
 
 /*****Nombre***************************************
+ * ultimoIndice()
+ *****Descripción**************************************
+ * 
+ *****Retorno**************************************
+ * 
+ *****Entradas*************************************
+ * 
+ **************************************************/
+
+
+//..................................................//
+
+
+/*****Nombre***************************************
+ * cambiarCadena()
+ *****Descripción**************************************
+ * 
+ *****Retorno**************************************
+ * 
+ *****Entradas*************************************
+ * 
+ **************************************************/
+
+// Método cambiarCadena
+void STRING::cambiarCadena(char *pNuevaCadena) {
+    // Liberar memoria del string original y asignar memoria para el nuevo string
+    delete[] apTexto;
+
+    int indice = 0;
+    while (pNuevaCadena[indice] != '\0') {
+        indice++;
+    }
+
+    apTexto = new char[indice + 1]; // +1 para el caracter nulo '\0'
+
+    // Copiar el contenido de la nueva cadena al string
+    for (int i = 0; i <= indice; ++i) {
+        apTexto[i] = pNuevaCadena[i];
+    }
+
+    aLargo = indice;
+}
+
+
+/*****Nombre***************************************
  * len()
  *****Descripción**************************************
  * Retorna la cantidad de caracteres en el objeto STRING.
@@ -117,6 +162,20 @@ int STRING::contarCaracter(char pCaracter) {
 int STRING::len() {
     return aLargo;
 }
+
+
+/*****Nombre***************************************
+ * equals()
+ *****Descripción**************************************
+ * 
+ *****Retorno**************************************
+ * 
+ *****Entradas*************************************
+ * 
+ **************************************************/
+
+
+//..................................................//
 
 
 /*****Nombre***************************************
@@ -157,6 +216,74 @@ STRING** STRING::split(char pSeparador) {
     }
 
     return lista;
+}
+
+
+/*****Nombre***************************************
+ * concatenar()
+ *****Descripción**************************************
+ * 
+ *****Retorno**************************************
+ * 
+ *****Entradas*************************************
+ * 
+ **************************************************/
+
+
+//..................................................//
+
+
+/*****Nombre***************************************
+ * concatenarCadenas()
+ *****Descripción**********************************
+ * Este método concatena un arreglo de cadenas de caracteres al final del string original.
+ * Recorre cada cadena en el arreglo y las agrega consecutivamente al final del string original,
+ * actualizando el largo total del string resultante.
+ *****Retorno**************************************
+ *
+ *****Entradas*************************************
+ * pCadenas: Un arreglo de punteros a cadenas de caracteres (char**). Cada elemento del arreglo
+ * es un puntero a una cadena de caracteres que se desea concatenar.
+ **************************************************/
+
+void STRING::concatenarCadenas(char **pCadenas) {
+    int nuevoLargo = aLargo;
+
+    // Calcular el nuevo largo total
+    for (int i = 0; pCadenas[i] != nullptr; ++i) {
+        int cadenaLargo = 0;
+        while (pCadenas[i][cadenaLargo] != '\0') {
+            cadenaLargo++;
+        }
+        nuevoLargo += cadenaLargo;
+    }
+
+    // Crear un nuevo arreglo de caracteres para almacenar el string concatenado
+    char *pNuevoTexto = new char[nuevoLargo + 1];
+    int indice = 0;
+
+    // Copiar el contenido del string original
+    for (int i = 0; i < aLargo; ++i) {
+        pNuevoTexto[indice] = apTexto[i];
+        indice++;
+    }
+
+    // Copiar el contenido de las cadenas del arreglo
+    for (int i = 0; pCadenas[i] != nullptr; ++i) {
+        int cadenaLargo = 0;
+        while (pCadenas[i][cadenaLargo] != '\0') {
+            pNuevoTexto[indice] = pCadenas[i][cadenaLargo];
+            indice++;
+            cadenaLargo++;
+        }
+    }
+
+    pNuevoTexto[indice] = '\0';
+
+    // Liberar memoria del string original y actualizar atributos
+    delete[] apTexto;
+    apTexto = pNuevoTexto;
+    aLargo= nuevoLargo;
 }
 
 
@@ -227,58 +354,4 @@ void STRING::reemplazarOcurrencias(const char *pAnterior, const char *pNuevo) {
             i++;
         }
     }
-}
-
-
-/*****Nombre***************************************
- * concatenarCadenas()
- *****Descripción**********************************
- * Este método concatena un arreglo de cadenas de caracteres al final del string original.
- * Recorre cada cadena en el arreglo y las agrega consecutivamente al final del string original,
- * actualizando el largo total del string resultante.
- *****Retorno**************************************
- *
- *****Entradas*************************************
- * pCadenas: Un arreglo de punteros a cadenas de caracteres (char**). Cada elemento del arreglo
- * es un puntero a una cadena de caracteres que se desea concatenar.
- **************************************************/
-
-void STRING::concatenarCadenas(char **pCadenas) {
-    int nuevoLargo = aLargo;
-
-    // Calcular el nuevo largo total
-    for (int i = 0; pCadenas[i] != nullptr; ++i) {
-        int cadenaLargo = 0;
-        while (pCadenas[i][cadenaLargo] != '\0') {
-            cadenaLargo++;
-        }
-        nuevoLargo += cadenaLargo;
-    }
-
-    // Crear un nuevo arreglo de caracteres para almacenar el string concatenado
-    char *pNuevoTexto = new char[nuevoLargo + 1];
-    int indice = 0;
-
-    // Copiar el contenido del string original
-    for (int i = 0; i < aLargo; ++i) {
-        pNuevoTexto[indice] = apTexto[i];
-        indice++;
-    }
-
-    // Copiar el contenido de las cadenas del arreglo
-    for (int i = 0; pCadenas[i] != nullptr; ++i) {
-        int cadenaLargo = 0;
-        while (pCadenas[i][cadenaLargo] != '\0') {
-            pNuevoTexto[indice] = pCadenas[i][cadenaLargo];
-            indice++;
-            cadenaLargo++;
-        }
-    }
-
-    pNuevoTexto[indice] = '\0';
-
-    // Liberar memoria del string original y actualizar atributos
-    delete[] apTexto;
-    apTexto = pNuevoTexto;
-    aLargo= nuevoLargo;
 }

@@ -57,6 +57,12 @@ int main() {
 
     str1.imprimir();
 
+    // implementación del método cambiarCadena()
+    char nuevaCadena[] = "NuevaCadena";
+    str1.cambiarCadena(nuevaCadena);
+
+    str1.imprimir();
+
     return 0;
 
 }

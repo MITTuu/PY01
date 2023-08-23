@@ -25,30 +25,10 @@
  * proporciona métodos para manipular y obtener
  * información sobre la cadena.
  *****Atributos************************************
- * - char *apTexto: Puntero al arreglo de caracteres que
- *   almacena el contenido de la cadena.
- * - int aLargo: Almacena la cantidad de caracteres en
- *   la cadena.
+ * apTexto
+ * aLargo
  *****Métodos**************************************
- * - STRING(char* input): Constructor que inicializa
- *   la cadena con el contenido del input proporcionado.
- * - ~STRING(): Destructor que libera la memoria
- *   asignada para el puntero de texto.
- * - int getlargo(): Retorna la cantidad de caracteres
- *   en la cadena.
- * - void imprimir(): Imprime el contenido de la cadena
- *   en la consola.
- * - char caracterEn(int indice): Retorna el caracter
- *   en el índice especificado dentro de la cadena.
- * - int contarCaracter(char caracter): Retorna la
- *   cantidad de ocurrencias del caracter especificado
- *   en la cadena.
- * - int len(): Retorna la cantidad de caracteres en
- *   la cadena.
- * - STRING** split(char separador): Retorna un arreglo
- *   de punteros a STRING que contiene las subcadenas
- *   resultantes de dividir la cadena usando el separador
- *   especificado.
+ * 
  **************************************************/
 
 class STRING {
@@ -63,8 +43,13 @@ public:
     void imprimir();
     char caracterEn(int indice);
     int contarCaracter(char pCaracter);
+    // método ultimoIndice()
+    void cambiarCadena(char* nuevaCadena);
     int len();
+    // método equals()
     STRING** split(char pSeparador);
-    void reemplazarOcurrencias(const char *pAnterior, const char *pNuevo);
+    // método concatenar()
     void concatenarCadenas(char **pCadenas);
+    void reemplazarOcurrencias(const char *pAnterior, const char *pNuevo);
+    
 };

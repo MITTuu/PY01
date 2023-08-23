@@ -43,12 +43,12 @@ public:
     void imprimir();
     char caracterEn(int indice);
     int contarCaracter(char pCaracter);
-    // método ultimoIndice()
+    void ultimoIndice(char *caracter);
     void cambiarCadena(char* nuevaCadena);
     int len();
-    // método equals()
+    void equals(char *cadena);
     STRING** split(char pSeparador);
-    // método concatenar()
+    char* concatenar(char *pCaracteres);
     void concatenarCadenas(char **pCadenas);
     void reemplazarOcurrencias(const char *pAnterior, const char *pNuevo);
 };

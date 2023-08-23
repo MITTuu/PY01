@@ -12,7 +12,7 @@
  * 
  *****Versión**************************************
  * ## | Fecha y hora | Autor
- * 08/22/2023 :: 10:23 PM | 
+ * 08/23/2023 :: 12:40 PM | 
  **************************************************/
 
 #include <iostream>
@@ -28,7 +28,21 @@
  * apTexto
  * aLargo
  *****Métodos**************************************
- * 
+ * Constructor
+ * Destructor
+ * getLargo()
+ * imprimir()
+ * calcularLargo()
+ * caracterEn()
+ * contarCaracter()
+ * ultimoIndice()
+ * cambiarCadena()
+ * len()
+ * equals()
+ * split()
+ * concatenar()
+ * concatenarCadenas()
+ * reemplazarOcurrecias()
  **************************************************/
  
 class STRING {
@@ -39,8 +53,8 @@ private:
 public:
     STRING(char*);
     ~STRING();
-    int getLargo();
     void imprimir();
+    int calcularLargo(const char *pCadenas);
     char caracterEn(int indice);
     int contarCaracter(char pCaracter);
     void ultimoIndice(char *caracter);

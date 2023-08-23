@@ -2,13 +2,13 @@
 
 /*****Nombre***************************************
  * Constructor
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Constructor de la clase STRING. Inicializa el objeto
  * con el contenido del input proporcionado.
  *****Retorno**************************************
  * 
  *****Entradas*************************************
- * input: Puntero al arreglo de caracteres de entrada.
+ * pEntrada
  **************************************************/
 
 STRING::STRING(char *pEntrada) {
@@ -33,7 +33,7 @@ STRING::STRING(char *pEntrada) {
 
 /*****Nombre***************************************
  * Destructor
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Destructor de la clase STRING. Libera la memoria
  * asignada para el puntero de texto.
  *****Retorno**************************************
@@ -49,7 +49,7 @@ STRING::~STRING() {
 
 /*****Nombre***************************************
  * imprimir
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Imprime el contenido del objeto STRING en la consola.
  *****Retorno**************************************
  * 
@@ -71,7 +71,7 @@ void STRING::imprimir() {
 *****Retorno**************************************
 * int largo
 *****Entradas*************************************
-* const char* pCadena
+* pCadena
 **************************************************/
 
 int STRING::calcularLargo(const char *pCadena) {
@@ -82,15 +82,16 @@ int STRING::calcularLargo(const char *pCadena) {
     return largo;
 }
 
+
 /*****Nombre***************************************
  * caracterEn()
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Retorna el caracter en el Ã­ndice especificado dentro
  * del objeto STRING.
  *****Retorno**************************************
  * Caracter segÃºn el indice
  *****Entradas*************************************
- * indice: Ãndice del caracter que se desea obtener.
+ * indice
  **************************************************/
 
 char STRING::caracterEn(int indice) {
@@ -104,13 +105,13 @@ char STRING::caracterEn(int indice) {
 
 /*****Nombre***************************************
  * contarCaracter()
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Retorna la cantidad de ocurrencias del caracter
  * especificado en el objeto STRING.
  *****Retorno**************************************
  * Cantidad de ocurrencias del caracter.
  *****Entradas*************************************
- * caracter: Caracter que se desea contar.
+ * pCaracter
  **************************************************/
 
 int STRING::contarCaracter(char pCaracter) {
@@ -126,30 +127,28 @@ int STRING::contarCaracter(char pCaracter) {
 
 /*****Nombre***************************************
  * ultimoIndice()
- *****DescripciÃ³n**************************************
- * Retorna la Ãºltima apariciÃ³n del caracter
+ *****Descripción**************************************
+ * Retorna la última aparición del caracter
  * de la entrada dentro de la cadena almacenada
  * en el constructor
  *****Retorno**************************************
- * El Ãºltimo Ã­ndice del caracter. En caso de que
+ * El último índice del caracter. En caso de que
  * no aparezca, un mensaje indicandolo 
  *****Entradas*************************************
- * char *caracter
+ * pCaracter
  **************************************************/
 
-
-//..................................................//
-void STRING::ultimoIndice(char *caracter) {
+void STRING::ultimoIndice(char *pCaracter) {
      //Verificar que solo se ingrese un caracter
      int iterador = 0;
-     while(caracter[iterador] != '\0'){
+     while(pCaracter[iterador] != '\0'){
         iterador++;
      }
      if (iterador >1){
         std::cout<<"Error, solo puede ingresar un caracter en la entrada del metodo";
         return;
      }
-     char c1 = *caracter;
+     char c1 = *pCaracter;
      char c2;
      int posicion = this->aLargo;
      iterador = 0;
@@ -170,7 +169,7 @@ void STRING::ultimoIndice(char *caracter) {
 
 /*****Nombre***************************************
  * cambiarCadena()
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * 
  *****Retorno**************************************
  * 
@@ -178,7 +177,6 @@ void STRING::ultimoIndice(char *caracter) {
  * 
  **************************************************/
 
-// MÃ©todo cambiarCadena
 void STRING::cambiarCadena(char *pNuevaCadena) {
     // Liberar memoria del string original y asignar memoria para el nuevo string
     delete[] apTexto;
@@ -201,7 +199,7 @@ void STRING::cambiarCadena(char *pNuevaCadena) {
 
 /*****Nombre***************************************
  * len()
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Retorna la cantidad de caracteres en el objeto STRING.
  *****Retorno**************************************
  * Cantidad de caracteres en el objeto STRING.
@@ -216,7 +214,7 @@ int STRING::len() {
 
 /*****Nombre***************************************
  * equals()
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Compara la cadena de la entrada con la almacenada
  * en el constructor del objeto
  *****Retorno**************************************
@@ -225,11 +223,11 @@ int STRING::len() {
  * Un mensaje indicando que no son iguales, en dicho
  * caso
  *****Entradas*************************************
- * char *cadena
+ * pCadena
  **************************************************/
-void STRING::equals(char *cadena){
+void STRING::equals(char *pCadena){
      int iterador = 0;
-     while (cadena[iterador] != '\0') { //Se verifica primero que la cadena de la entrada tenga la misma longitud de la almacenada en el constructor
+     while (pCadena[iterador] != '\0') { //Se verifica primero que la cadena de la entrada tenga la misma longitud de la almacenada en el constructor
         iterador++;
      }
      if(iterador != this->aLargo){
@@ -240,7 +238,7 @@ void STRING::equals(char *cadena){
      char caracterOriginal;
      iterador = 0;
      while (iterador < this->aLargo){ //Se itera para comparar caracter por caracter
-        caracterEntrada = cadena[iterador];
+        caracterEntrada = pCadena[iterador];
         caracterOriginal = this->apTexto[iterador]; 
         if (caracterEntrada != caracterOriginal){ //En caso de que ambos caracteres no sean exactamente iguales
             std::cout<<"Las cadenas no son iguales";
@@ -249,22 +247,20 @@ void STRING::equals(char *cadena){
         iterador++;
      }
      std::cout<<"Ambas cadenas son iguales"; //Caso donde pasa la iteración sin entrar en la condición del if
-     return;
-     
-     
+     return;  
 }
 
 
 /*****Nombre***************************************
  * split()
- *****DescripciÃ³n**************************************
+ *****Descripción**************************************
  * Retorna un arreglo de punteros a STRING que contiene
  * las subcadenas resultantes de dividir el objeto STRING
  * usando el separador especificado.
  *****Retorno**************************************
  * Arreglo de punteros a STRING con las subcadenas.
  *****Entradas*************************************
- * separador: Caracter que se utiliza como separador.
+ * pSeparador
  **************************************************/
 
 STRING** STRING::split(char pSeparador) {
@@ -303,9 +299,9 @@ STRING** STRING::split(char pSeparador) {
  * cadena de caracteres (char*) y la va a concatenar
  * al final del atributo de clase 'apTexto'.
  *****Retorno**************************************
- * char* nuevaCadena
+ * nuevaCadena
  *****Entradas*************************************
- * char *pCaracteres
+ * pCaracteres
  **************************************************/
 
 char* STRING::concatenar(char *pCaracteres) {
@@ -343,25 +339,21 @@ char* STRING::concatenar(char *pCaracteres) {
 
     imprimir();
 
- 
     return pNuevaCadena;
 
 }
 
-//..................................................//
-
 
 /*****Nombre***************************************
  * concatenarCadenas()
- *****DescripciÃ³n**********************************
+ *****Descripción**********************************
  * Este mÃ©todo concatena un arreglo de cadenas de caracteres al final del string original.
  * Recorre cada cadena en el arreglo y las agrega consecutivamente al final del string original,
  * actualizando el largo total del string resultante.
  *****Retorno**************************************
  *
  *****Entradas*************************************
- * pCadenas: Un arreglo de punteros a cadenas de caracteres (char**). Cada elemento del arreglo
- * es un puntero a una cadena de caracteres que se desea concatenar.
+ * pCadenas
  **************************************************/
 
 void STRING::concatenarCadenas(char **pCadenas) {
@@ -407,15 +399,15 @@ void STRING::concatenarCadenas(char **pCadenas) {
 
 /*****Nombre***************************************
  * reemplazarOcurrencias()
- *****DescripciÃ³n**********************************
- * Este mÃ©todo reemplaza todas las ocurrencias de una cadena de caracteres 'anterior'
+ *****Descripción**********************************
+ * Este método reemplaza todas las ocurrencias de una cadena de caracteres 'anterior'
  * en el texto original con otra cadena de caracteres 'nuevo'. Busca todas las ocurrencias
  * de 'anterior' en el texto original y las reemplaza por 'nuevo'.
  *****Retorno**************************************
  * La cadena de caracteres con las sustituciones de las ocurrencias
  *****Entradas*************************************
- * anterior: La cadena de caracteres que se busca reemplazar en el texto original.
- * nuevo: La cadena de caracteres que se utilizarÃ¡ para reemplazar las ocurrencias de 'anterior'.
+ * pAnterior
+ * pNuevo
  **************************************************/
 
 void STRING::reemplazarOcurrencias(const char *pAnterior, const char *pNuevo) {

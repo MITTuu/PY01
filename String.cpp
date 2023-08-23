@@ -220,15 +220,56 @@ STRING** STRING::split(char pSeparador) {
 
 
 /*****Nombre***************************************
- * concatenar()
- *****Descripción**************************************
- * 
+ * concatenar
+ *****Descripción**********************************
+ * Este método va a recibir como parámetro una
+ * cadena de caracteres (char*) y la va a concatenar
+ * al final del atributo de clase 'apTexto'.
  *****Retorno**************************************
- * 
+ * char* nuevaCadena
  *****Entradas*************************************
- * 
+ * char *pCaracteres
  **************************************************/
 
+char* STRING::concatenar(char *pCaracteres) {
+
+    int largoTotal = (calcularLargo(this->apTexto) + (calcularLargo(pCaracteres)));
+
+    char *pNuevaCadena = new char[largoTotal + 1];
+
+    char *pNuevos = pNuevaCadena;
+
+    
+    while (*this->apTexto != '\0') {
+        *pNuevos = *this->apTexto;
+        ++pNuevos;
+        ++this->apTexto;
+    }
+
+    while (*pCaracteres != '\0') {
+        *pNuevos = *pCaracteres;
+        ++pNuevos;
+        ++pCaracteres;
+    }
+
+    *pNuevos = '\0'; // Agregar el carácter nulo al final
+
+    std::cout << "Nueva cadena: " << pNuevaCadena << std::endl;
+
+    int longitud = calcularLargo(pNuevaCadena);
+
+    delete[] this->apTexto;
+
+    this->apTexto = pNuevaCadena;
+
+    this->aLargo = longitud;
+
+    imprimir();
+
+ 
+    return pNuevaCadena;
+
+}
 
 //..................................................//
 

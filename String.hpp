@@ -41,6 +41,7 @@ public:
     ~STRING();
     int getLargo();
     void imprimir();
+    int calcularLargo(const char *pCadena);
     char caracterEn(int indice);
     int contarCaracter(char pCaracter);
     // método ultimoIndice()
